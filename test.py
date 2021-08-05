@@ -1,5 +1,4 @@
 from utils import *
+from main import run
 
-x = options()
-print(type(x))
-print(x)
+run()

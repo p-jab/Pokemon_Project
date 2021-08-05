@@ -85,6 +85,14 @@ def by_name(p_list = []):
     :param p_list: A list of pokemon
     :return: does not return anything
     """
+    name = input("Enter name of the Pokemon: ")
+    for pokemon in p_list:
+        if pokemon[1] == name:
+            print(pokemon)
+            return
+    print("No such Pokemon could be found!")
+
+
 
 def by_type(p_list = []):
     
@@ -100,6 +108,14 @@ def by_type(p_list = []):
     :param p_list: A list of pokemon
     :return: does not return anything
     """
+    type = input("Enter the type of Pokemon: ")
+    for pokemon in p_list:
+        if pokemon[2] == type or pokemon[3] == type:
+            print(pokemon)
+            return
+    print("No Pokemon of that type exists")
+
+
 
 def add_specific_poke():
     
@@ -113,6 +129,15 @@ def add_specific_poke():
     :param: None
     :return: A list representing a pokemon or None
     """
+    with open("pokemon_database.csv") as database:
+        csv_reader = csv.reader(database)
+        name = input("Enter a name: ")
+        for line in csv_reader:
+            if line[1] == name:
+                return line
+        print("Pokemon not found")
+
+
 
 def add_random_poke():
     
@@ -125,17 +150,29 @@ def add_random_poke():
     :param:  None
     :return: A list representing a pokemon
     """
+    with open("pokemon_database.csv") as database:
+        csv_reader = csv.reader(database)
+        x = random.randint(1, 721)
+        lista =[]
+        for line in csv_reader:
+            lista.append(line)
+        return lista[x]
+
 
 def show_all(pokedex = []):
     """
     Task 10: Print all pokemon from pokedex.
 
     Print key information about all the pokemon in the pokedex. Include their
-    name, type, total, hp and generation.
+    name, type, hp and generation.
 
     :param p_list: None
     :return: None
     """
+    for pokemon in pokedex:
+        print(f"Name: {pokemon[1]}\tType: {pokemon[2]}\tHP: {pokemon[5]}\tGeneration: {pokemon[11]}")
+
+
 
 def save_pokes(pokedex = []):
     """
@@ -145,4 +182,16 @@ def save_pokes(pokedex = []):
     :param p_list: pokedex: a list of pokemon
     :return: None
     """
+    with open("pokedex.csv", "a", newline= "") as p_dex:
+        csv_writer = csv.writer(p_dex)
+        for item in pokedex:
+            csv_writer.writerow(item)
 
+
+def load_pokes(path):
+    lista = []
+    with open(path) as f:
+        csv_reader = csv.reader(f)
+        for line in csv_reader:
+            lista.append(line)
+    return lista
