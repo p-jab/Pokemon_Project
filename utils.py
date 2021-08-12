@@ -182,10 +182,11 @@ def save_pokes(pokedex = []):
     :param p_list: pokedex: a list of pokemon
     :return: None
     """
-    with open("pokedex.csv", "a", newline= "") as p_dex:
+    with open("pokedex.csv", "w", newline= "") as p_dex:
         csv_writer = csv.writer(p_dex)
         for item in pokedex:
             csv_writer.writerow(item)
+        print("Saving complete!")
 
 
 def load_pokes(path):

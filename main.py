@@ -49,6 +49,14 @@ def run():
                 pokedex.append(add_random_poke())
         elif option == 3:
             show_all(pokedex)
+        elif option == 4:
+            opt2 = visualise()
+            if opt2 == 1:
+                pie_chart(pokedex)
+            elif opt2 == 2:
+                bar_chart(pokedex)
+        elif option == 5:
+            save_pokes(pokedex)
         elif option == 6:
             break
         '''
